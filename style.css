@@ -7,13 +7,9 @@ box-sizing:border-box;
 body{
 margin-left: 150px;
 margin-right: 150px;
-background: rgb(58, 58, 58);
 font-family:Arial,Helvetica,sans-serif;
 color:white;
-background-image:
-linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-
+background: rgb(71, 71, 71);
 background-size:16px 16px;
 
 }
@@ -65,6 +61,99 @@ text-decoration:none;
 nav a:hover{
 
 color:#ffe04f;
+
+}
+
+/* DROPDOWN */
+
+.dropdown{
+    position:relative;
+}
+
+.dropbtn{
+
+    background:#2d3945;
+    color:#ffe04f;
+
+    border:2px solid #394652;
+
+    padding:10px 18px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.dropbtn:hover{
+
+    background:#394652;
+
+}
+
+.dropdown-content{
+
+    display:none;
+
+    position:absolute;
+
+    top:100%;
+    left:0;
+
+    min-width:240px;
+
+    background:#202830;
+
+    border:2px solid #394652;
+
+    z-index:999;
+
+}
+
+.dropdown-content a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-bottom:1px solid #394652;
+
+}
+
+.dropdown-content a:last-child{
+
+    border-bottom:none;
+
+}
+
+.dropdown-content a:hover{
+
+    background:#303840;
+
+    color:#ffe04f;
+
+}
+
+.dropdown:hover .dropdown-content{
+
+    display:block;
+
+}
+
+.dropdown-content img{
+
+    width:24px;
+    height:24px;
+    object-fit:contain;
 
 }
 
@@ -293,4 +382,274 @@ padding:12px;
 
 outline:none;
 
+}
+
+/* What's Been Going On */
+
+.news-panel{
+    background:#202830;
+    border:2px solid #333;
+    padding:15px;
+}
+
+.news-panel h2{
+    color:#ffe04f;
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.news-post{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid #394652;
+}
+
+.news-post:last-child{
+    border-bottom:none;
+}
+
+.news-post img{
+    width:36px;
+    height:36px;
+    object-fit:contain;
+}
+
+.news-post strong{
+    display:block;
+    color:#ffe04f;
+    margin-bottom:4px;
+}
+
+.news-post p{
+    color:#ddd;
+    font-size:14px;
+    line-height:1.4;
+}
+
+/* SEARCH RESULTS */
+
+#searchResults{
+
+    width:1080px;
+
+    margin:40px auto;
+
+    background:#202830;
+
+    border:2px solid #333;
+
+    padding:20px;
+
+}
+
+#searchResults h2{
+
+    color:#ffe04f;
+
+    margin-bottom:20px;
+
+}
+
+.result{
+
+    display:flex;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #394652;
+
+}
+
+.result:last-child{
+
+    border-bottom:none;
+
+}
+
+.result img{
+
+    width:120px;
+
+    height:120px;
+
+    object-fit:cover;
+
+    background:#111;
+
+}
+
+.result h3{
+
+    color:#ffe04f;
+
+    margin-bottom:8px;
+
+}
+
+.result p{
+
+    color:#ddd;
+
+}
+
+.result a{
+
+    color:#7fc7ff;
+
+    text-decoration:none;
+
+}
+
+.result a:hover{
+
+    text-decoration:underline;
+
+}
+
+.games-section{
+    width:1080px;
+    margin:40px auto;
+}
+
+.games-section h2{
+    margin-bottom:20px;
+    color:#ffe04f;
+}
+
+.games-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:20px;
+}
+
+.game-card{
+    background:#202830;
+    border:2px solid #333;
+    overflow:hidden;
+    transition:.2s;
+}
+
+.game-card:hover{
+    border-color:#ffe04f;
+}
+
+.game-card iframe{
+    width:100%;
+    height:260px;
+    border:none;
+    background:#111;
+}
+
+.game-info{
+    padding:15px;
+}
+
+.game-info h3{
+    color:#ffe04f;
+    margin-bottom:8px;
+}
+
+.game-info p{
+    color:#ddd;
+    margin-bottom:12px;
+}
+
+.game-info a{
+    color:#7fc7ff;
+    text-decoration:none;
+}
+
+.game-info a:hover{
+    text-decoration:underline;
+}
+
+/* Import a pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* UNDERTALE-INSPIRED THEME */
+
+body.undertale-theme{
+    background:#000;
+    color:#fff;
+    font-family:"Press Start 2P", monospace;
+}
+
+body.undertale-theme header{
+    background:#000;
+    border-bottom:3px solid #fff;
+}
+
+body.undertale-theme .logo{
+    background:#fff;
+    color:#000;
+}
+
+body.undertale-theme .featured,
+body.undertale-theme .news-panel,
+body.undertale-theme #searchResults,
+body.undertale-theme .game-card{
+    background:#000;
+    border:3px solid #fff;
+}
+
+body.undertale-theme .title,
+body.undertale-theme .label{
+    background:#fff;
+    color:#000;
+}
+
+body.undertale-theme h1,
+body.undertale-theme h2,
+body.undertale-theme h3,
+body.undertale-theme strong{
+    color:#fff;
+}
+
+body.undertale-theme a{
+    color:#ffff00;
+}
+
+body.undertale-theme button{
+    background:#000;
+    color:#fff;
+    border:2px solid #fff;
+    font-family:"Press Start 2P", monospace;
+}
+
+body.undertale-theme input{
+    background:#000;
+    color:#fff;
+    border:2px solid #fff;
+    font-family:"Press Start 2P", monospace;
+}
+
+/* Make images look pixelated */
+
+body.undertale-theme img,
+body.undertale-theme iframe{
+    image-rendering:pixelated;
+    image-rendering:crisp-edges;
+}
+
+/* White borders everywhere */
+
+body.undertale-theme .thumb,
+body.undertale-theme .news-post,
+body.undertale-theme .result{
+    border-color:#fff;
+}
+
+/* Hover effects */
+
+body.undertale-theme a:hover{
+    color:#ff0;
+}
+
+body.undertale-theme .thumb:hover,
+body.undertale-theme .game-card:hover{
+    border-color:#ff0;
 }

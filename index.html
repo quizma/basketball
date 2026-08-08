@@ -9,38 +9,69 @@
     </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="img/basketball.avif" width="30px">basketball.net
-        </div>
+        <div class="logo" id="themeToggle">
+            <img src="img/basketball.avif" width="30" alt="Basketball">
+                basketball.net
+</div>
+</script>
+
+
+<script>
+const toggle = document.getElementById("themeToggle");
+
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("undertale-theme");
+});
 </script>
 
         
-        <nav>
-            <a href=""><img src="emojis/sonic.png" alt="games" width="40px"></a>
-            <a href="roblox hub.html"><img src="emojis/Roblox_icon_2006.svg" alt="games" width="30px"></a>
-            <a href="#"><img src="emojis/fnf_icon.png" alt="games" width="35px"></a>
-            <a href="henry_sticknin.html"><img src="emojis/henry_stickmin01.png" alt="games" width="35px"></a>
-            <!-- Background music audio element -->
-        <audio id="bgMusic" src="breakfast.mp3" loop autoplay></audio>
+    <nav>
 
-        <!-- Play/Pause Button -->
-        <button onclick="toggleMusic()">Click Me For a Supprise!</button>
-        <script>
-        function toggleMusic() {
-            var music = document.getElementById("bgMusic");
-            if (music.paused) {
-            music.play();
-            } else {
-            music.pause();
-            }
-        }
-        </script>
-        </nav>
-        
-        <div class="search">
-            <input type="text" placeholder="Search...">
+    <div class="dropdown">
+        <button class="dropbtn">backpack ▾</button>
 
+        <div class="dropdown-content">
+            <a>
+                Utilities
+            </a>
+
+            <a href="flashplayer.html" target="_blank">
+                <img src="emojis/sonic.png" width="24">
+                Play flash games!
+            </a>
         </div>
+    </div>
+
+    <!-- Background music -->
+    <audio id="bgMusic" src="funky loop.mp3" loop autoplay></audio>
+
+    <button onclick="toggleMusic()">Click Me For a Surprise!</button>
+
+    </nav>
+
+<script>
+function toggleMusic() {
+    var music = document.getElementById("bgMusic");
+
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+</script>
+
+<div class="search">
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="Search games..."
+        onkeypress="if(event.key==='Enter') searchWikipedia()"
+    >
+</div>
+</nav>
+        
+        <img src="emojis/Roblox_icon_2006.svgs" alt="">
         
         <div class="account">
             <a href="https://web.whatsapp.com/" target="_blank" onclick="alert('You shall be banished to the Whatsapp realm!')">Dont like this?</a>
@@ -48,49 +79,210 @@
     </header>
     
     <div class="container">
-        <div class="featured">
-            <div class="label">
-                Best of Yesterday
-            </div>
-            
-            <img src="img/sonic 3 air.jpg">
-            
-            <div class="title">
-                Sonic 3 A.I.R
-            </div>
-            
-            <div class="stats">
-                <span>#sonicthehedgehog</span>
-                <span>Try Now!</span>
-            </div>
-        </div>
-        
-        <div class="sidebar">
-            <div class="thumb">
-                <img src="img/catto pew pew.jpg">
-            </div>
-            
-            <div class="thumb">
-                <img src="bg/soniv 01.gif">
-            </div>
 
-            <div class="thumb">
-                <img src="img/baldi's basics.jpg">
-            </div>
-            
-            <div class="thumb">
-                <img src="img/teris.jpg">
-            </div>
+    <!-- Featured Game -->
+    <div class="featured">
 
-            <div class="thumb">
-                <img src="img/sonic cd.jpg">
-            </div>
-            
-            <div class="thumb">
-                <img src="img/sonic 2.jpg">
-            </div>
+        <div class="label">
+            <span><img src="emojis/Roblox_icon_2006.svg" alt="Roblox" width="22"></span>
         </div>
+
+        <img src="titles/roblox bannar.jpg" alt="Roblox Banner">
+
+        <div class="title">
+            Roblox
+        </div>
+
     </div>
+
+    <!-- What's Been Going On -->
+    <div class="news-panel">
+
+        <h2>📢 What's Been Going On!</h2>
+
+        <div class="news-post">
+            <img src="emojis/costume1 (2).svg" alt="Sonic">
+            <div>
+                <strong>Sonic</strong>
+                <p>Sonic 3 A.I.R is now featured on the homepage!</p>
+            </div>
+        </div>
+
+        <div class="news-post">
+            <img src="emojis/costume1 (1).svg" alt="Roblox">
+            <div>
+                <strong>Roblox</strong>
+                <p>New Roblox games have been added to the hub.</p>
+            </div>
+        </div>
+
+        <div class="news-post">
+            <img src="emojis/costume1 (3).svg" alt="FNF">
+            <div>
+                <strong>Friday Night Funkin'</strong>
+                <p>Fresh mods are available to play.</p>
+            </div>
+        </div>
+
+        <div class="news-post">
+            <img src="emojis/costume8.svg" alt="Henry Stickmin">
+            <div>
+                <strong>Henry Stickmin</strong>
+                <p>Collection page has been updated.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Search Results -->
+<div id="searchResults">
+    <h2>Search Results</h2>
+    <div id="results"></div>
+</div>
+
+<div class="games-section">
+
+    <h2><img src="emojis/costume1.svg" width="30px"> Play Games</h2>
+
+    <div class="games-grid">
+
+        <div class="game-card">
+            <iframe
+                src="games/Mad Gear Escape.html"
+                loading="lazy"
+                title="Game Preview">
+            </iframe>
+
+            <div class="game-info">
+                <h3>Mad Gear Escape</h3>
+                <p>Play directly in your browser.</p>
+                <a href="games/Mad Gear Escape.html" target="_blank">Open Full Game</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <iframe
+                src="games/Candle Chaos.html"
+                loading="lazy"
+                title="Game Preview">
+            </iframe>
+
+            <div class="game-info">
+                <h3>Candle Chayos</h3>
+                <p>A fun web game.</p>
+                <a href="games/Candle Chaos.html" target="_blank">Open Full Game</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <iframe
+                src="titles/ufs bannar.jpg"
+                loading="lazy"
+                title="Game Preview">
+            </iframe>
+
+            <div class="game-info">
+                <h3>Ultimate Flash Sonic</h3>
+                <p>An awesome flash game with 2 modes of play. Choose between Sonic,
+                    Tails, Knuckles, or Cream.
+                    Play the original Sonic the Hedgehog
+                    rom for the Sega Genesis.</p>
+                <a href="games/ultimate-flash-sonic.swf" target="_blank">Install!</a>
+                <a href="flashplayer.html" target="_blank">Open flash Emulator1</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <iframe
+                src="titles/henry stickmin bannar.jpg"
+                loading="lazy"
+                title="Game Preview">
+            </iframe>
+
+            <div class="game-info">
+                <h3>Henry stickmin : Escaping the bank</h3>
+                <p>A fun web game.</p>
+                <a href="games/161792_breaking-the-bank.swf" target="_blank">Install!</a>
+                <a href="flashplayer.html" target="_blank">Open Full Game</a>
+            </div>
+        </div>
+
+        <script>
+document.querySelectorAll(".game-frame").forEach(frame => {
+
+    frame.addEventListener("load", () => {
+
+        try {
+            frame.contentWindow.postMessage({
+                type: "mute"
+            }, "*");
+
+            frame.contentWindow.document.querySelectorAll("video,audio").forEach(media => {
+                media.muted = true;
+                media.volume = 0;
+            });
+
+        } catch (e) {
+            // Cross-origin iframes can't be controlled.
+        }
+
+    });
+
+});
+</script>
+    </div>
+
+</div>
+
+<script>
+    async function searchWikipedia() {
+
+    const query = document.getElementById("searchBox").value.trim();
+
+    if (query === "") return;
+
+    const url =
+    `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrlimit=10&prop=pageimages|extracts|info&piprop=thumbnail&pithumbsize=200&exintro=1&explaintext=1&inprop=url&format=json&origin=*`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const results = document.getElementById("results");
+    results.innerHTML = "";
+
+    if (!data.query) {
+        results.innerHTML = "<p>No results found.</p>";
+        return;
+    }
+
+    Object.values(data.query.pages).forEach(page => {
+
+        results.innerHTML += `
+            <div class="result">
+
+                <img src="${page.thumbnail ? page.thumbnail.source : 'img/basketball.avif'}" alt="${page.title}">
+
+                <div>
+
+                    <h3>${page.title}</h3>
+
+                    <p>${page.extract || "No description available."}</p>
+
+                    <a href="${page.fullurl}" target="_blank">
+                        Read more on Wikipedia →
+                    </a>
+
+                </div>
+
+            </div>
+        `;
+
+    });
+
+}
+</script>
 
 </body>
 </html>

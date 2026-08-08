@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #menu {
+            height: 30px;
+            background: #202020;
+            color: white;
+            display: flex;
+            align-items: center;
+            user-select: none;
+        }
+
+        .menu {
+            position: relative;
+            padding: 7px 12px;
+            cursor: pointer;
+        }
+
+        .menu:hover {
+            background: #333;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            background: #252525;
+            min-width: 190px;
+            border: 1px solid #444;
+            z-index: 100;
+        }
+
+        .menu:hover .dropdown {
+            display: block;
+        }
+
+        .item {
+            padding: 9px 12px;
+            white-space: nowrap;
+        }
+
+        .item:hover {
+            background: #444;
+        }
+
+        .submenu {
+            position: relative;
+        }
+
+        .submenu-list {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: #252525;
+            min-width: 150px;
+            border: 1px solid #444;
+        }
+
+        .submenu:hover .submenu-list {
+            display: block;
+        }
+
+        #player {
+            width: 100%;
+            height: calc(100% - 30px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
+
+        ruffle-player {
+            width: 800px;
+            height: 600px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #selectScreen {
+            position: absolute;
+            inset: 0;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 200;
+        }
+
+        #selectScreen h2 {
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="menu">
+
+    <div class="menu">
+        File
+
+        <div class="dropdown">
+            <div class="item" id="openGame">
+                Open Flash Game
+            </div>
+
+            <div class="item" id="pauseGame">
+                Pause / Unpause
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        Options
+
+        <div class="dropdown">
+
+            <div class="item submenu">
+                Select
+
+                <div class="submenu-list">
+                    <div class="item" data-filter="none">None</div>
+                    <div class="item" data-filter="crt">CRT</div>
+                    <div class="item" data-filter="vintage">Vintage</div>
+                    <div class="item" data-filter="cinema">Cinema Mode</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="menu" id="endGame">
+        End
+    </div>
+
+</div>
+
+
+<div id="player"></div>
+
+
+<div id="selectScreen">
+
+    <h2>Select your Flash game</h2>
+
+    <input type="file" id="file" accept=".swf">
+
+</div>
+
+
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
+<script>
+
+const file = document.getElementById("file");
+const player = document.getElementById("player");
+const selectScreen = document.getElementById("selectScreen");
+
+const openGame = document.getElementById("openGame");
+const pauseGame = document.getElementById("pauseGame");
+const endGame = document.getElementById("endGame");
+
+let flash = null;
+let paused = false;
+
+
+/* Open Flash game */
+
+function openFlash(file) {
+
+    if (!file) return;
+
+    if (!file.name.toLowerCase().endsWith(".swf")) {
+        alert("Please select a SWF file.");
+        return;
+    }
+
+    const url = URL.createObjectURL(file);
+
+    player.innerHTML = "";
+
+    const ruffle = window.RufflePlayer.newest();
+
+    flash = ruffle.createPlayer();
+
+    flash.style.width = "800px";
+    flash.style.height = "590px";
+    flash.style.maxWidth = "100%";
+    flash.style.maxHeight = "100%";
+
+    player.appendChild(flash);
+
+    flash.load(url);
+
+    selectScreen.style.display = "none";
+}
+
+
+/* File picker */
+
+file.addEventListener("change", function () {
+    openFlash(this.files[0]);
+});
+
+
+/* File → Open Flash Game */
+
+openGame.addEventListener("click", function () {
+    file.click();
+});
+
+
+/* Pause / Unpause */
+
+pauseGame.addEventListener("click", function () {
+
+    if (!flash) return;
+
+    if (paused) {
+        flash.play();
+        paused = false;
+    } else {
+        flash.pause();
+        paused = true;
+    }
+
+});
+
+
+/* End → return to game selection */
+
+endGame.addEventListener("click", function () {
+
+    if (flash) {
+        flash.remove();
+        flash = null;
+    }
+
+    player.innerHTML = "";
+
+    file.value = "";
+
+    selectScreen.style.display = "flex";
+
+});
+
+
+/* Display filters */
+
+document.querySelectorAll("[data-filter]").forEach(item => {
+
+    item.addEventListener("click", function () {
+
+        const filter = this.dataset.filter;
+
+        if (!flash) return;
+
+        if (filter === "none") {
+            flash.style.filter = "none";
+        }
+
+        if (filter === "crt") {
+            flash.style.filter =
+                "contrast(1.15) brightness(.9) saturate(.8)";
+        }
+
+        if (filter === "vintage") {
+            flash.style.filter =
+                "sepia(.45) contrast(1.1) saturate(.8)";
+        }
+
+        if (filter === "cinema") {
+            flash.style.filter =
+                "contrast(1.2) brightness(.75) saturate(.7)";
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
